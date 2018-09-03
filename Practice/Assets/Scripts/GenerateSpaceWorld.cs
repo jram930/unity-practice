@@ -15,10 +15,8 @@ public class GenerateSpaceWorld : MonoBehaviour {
 	public float gap = 0f;
 	public Vector3 startPos;
 	private GameObject[][] hexes;
-	private GameState gameState;
 
 	void Start() {
-		this.gameState = GameState.Instance;
 		this.hexes = new GameObject[mapWidth][];
 		for(int x=0; x<this.mapWidth; x++) {
 			this.hexes[x] = new GameObject[this.mapHeight];
