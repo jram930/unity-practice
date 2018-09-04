@@ -8,11 +8,11 @@ public class CameraMovement : MonoBehaviour {
 	public float ZoomSensitivity = 10f;
 	public float MaxFov = 50f;
 	public float MinFov = 5f;
-	private Camera camera;
+	private Camera cam;
 
 	// Use this for initialization
 	void Start () {
-		this.camera = this.gameObject.GetComponent<Camera>();
+		this.cam = this.gameObject.GetComponent<Camera>();
 	}
 	
 	// Update is called once per frame
@@ -44,9 +44,9 @@ public class CameraMovement : MonoBehaviour {
 	}
 
 	private void HandleZooming() {
-		float fov = this.camera.fieldOfView;
+		float fov = this.cam.fieldOfView;
 		fov -= Input.GetAxis("Mouse ScrollWheel") * ZoomSensitivity;
 		fov = Mathf.Clamp(fov, MinFov, MaxFov);
-		this.camera.fieldOfView = fov;
+		this.cam.fieldOfView = fov;
 	}
 }

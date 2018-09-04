@@ -7,31 +7,35 @@ public class GenerateSpaceWorld : MonoBehaviour {
 
 	public Transform hexPrefab;
 
-	public int mapWidth = 11;
-	public int mapHeight = 11;
+	public int MapWidth = 11;
+	public int MapHeight = 11;
+	public float Gap = 0f;
+	public Vector3 StartPos;
 	private const float scale = 57.8f;
 	private float hexWidth = 1f * scale;
 	private float hexHeight = 1.15528f * scale;
-	public float gap = 0f;
-	public Vector3 startPos;
 	private GameObject[][] hexes;
+	private GameState gameState;
 
 	void Start() {
-		this.hexes = new GameObject[mapWidth][];
-		for(int x=0; x<this.mapWidth; x++) {
-			this.hexes[x] = new GameObject[this.mapHeight];
+		this.hexes = new GameObject[MapWidth][];
+		for(int x=0; x<this.MapWidth; x++) {
+			this.hexes[x] = new GameObject[this.MapHeight];
 		}
 		this.GenerateMap();
 		this.SpawnUnits();
 	}
 
 	private void GenerateMap() {
-		float gappedWidth = hexWidth + gap;
-		float gappedHeight = hexHeight + gap;
-		for (int x = 0; x < mapWidth; x++) {
-			for (int z = 0; z < mapHeight; z++) {
-				float xPos = startPos.x + ((1.5f * gappedWidth) * (float)x);
-				float zPos = startPos.z + ((1.12f * gappedHeight) * (float)z);
+		this.gameState = GameState.Instance;
+		this.gameState.MapHeight = this.MapHeight;
+		this.gameState.MapWidth = this.MapWidth;
+		float gappedWidth = hexWidth + Gap;
+		float gappedHeight = hexHeight + Gap;
+		for (int x = 0; x < MapWidth; x++) {
+			for (int z = 0; z < MapHeight; z++) {
+				float xPos = StartPos.x + ((1.5f * gappedWidth) * (float)x);
+				float zPos = StartPos.z + ((1.12f * gappedHeight) * (float)z);
 				if (z % 2 != 0) {
 					xPos += (0.75f * gappedWidth);
 				}
@@ -47,7 +51,7 @@ public class GenerateSpaceWorld : MonoBehaviour {
 	}
 
 	private void SpawnUnits() {
-		SpaceHex spaceHex = this.hexes[0][0].GetComponent<SpaceHex>();
+		SpaceHex spaceHex = this.hexes[2][2].GetComponent<SpaceHex>();
 		spaceHex.SpawnFleet();
 	}
 }
