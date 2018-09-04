@@ -44,7 +44,7 @@ public class GenerateSpaceWorld : MonoBehaviour {
 				hex.position = hexPos;
 				hex.parent = this.transform;
 				hex.name = "Hex_" + x + "_" + z;
-				hex.gameObject.AddComponent<SpaceHex>();
+				//hex.gameObject.AddComponent<SpaceHex>();
 				hexes[x][z] = hex.gameObject;
 			}
 		}

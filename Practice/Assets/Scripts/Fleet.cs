@@ -26,7 +26,9 @@ public class Fleet : MonoBehaviour {
 	/// - highlights possible hex movements
 	/// </summary>
 	void OnMouseDown() {
+		this.gameState = GameState.Instance;
 		if (!this.selected) {
+			this.gameState.SelectedUnit = this.transform.gameObject;
 			this.ShowSelected();
 			this.HighlightCurrentHex();
 			this.ShowPossibleMoves();
@@ -105,6 +107,7 @@ public class Fleet : MonoBehaviour {
 			GameObject possibleHex = GameObject.Find(possibleMove);
 			GameObject possibleHexModel = possibleHex.transform.Find("SpaceHexModel").gameObject;
 			possibleHexModel.GetComponent<MeshRenderer>().material = possibleHexMaterial;
+			possibleHexModel.GetComponent<MeshCollider>().enabled = true;
 		}
 	}
 }

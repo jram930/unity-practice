@@ -69,6 +69,7 @@ public class SpaceHex : MonoBehaviour {
 	}
 
 	private Vector3 GetRandomPosition() {
+		this.gameState = GameState.Instance;
 		float xTranslate = this.gameState.GetRandomFloat(10f, 25f);
 		bool xPositive = this.gameState.GetRandomInt(0, 2) == 0;
 		float yTranslate = this.gameState.GetRandomFloat(10f, 25f);
@@ -89,6 +90,17 @@ public class SpaceHex : MonoBehaviour {
 		fleet.transform.parent = this.transform;
 		fleet.transform.position = this.GetRandomPosition();
 		fleet.gameObject.AddComponent<Fleet>();
+	}
+
+	/// <summary>
+	/// This object doesn't have a collider, but its internal model does.
+	/// The model's collider routes click events here to be handled appropriately.
+	/// </summary>
+	public void HandleClick() {
+		GameState gameState = GameState.Instance;
+		gameState.SelectedUnit.transform.parent = this.transform;
+		GameObject fleet = this.transform.Find(gameState.SelectedUnit.name).gameObject;
+		fleet.transform.position = this.GetRandomPosition();
 	}
 	
 	// Update is called once per frame

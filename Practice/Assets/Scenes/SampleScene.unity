@@ -361,11 +361,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5edcf8bcb00a8f4d91c9ae1f0d93871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexPrefab: {fileID: 4167198193622188, guid: a4b0463025a66ad47b01e9a677b3d5e4, type: 2}
-  mapWidth: 50
-  mapHeight: 50
-  gap: 0
-  startPos: {x: 0, y: 0, z: 0}
+  hexPrefab: {fileID: 4739292066323980, guid: a4b0463025a66ad47b01e9a677b3d5e4, type: 2}
+  MapWidth: 11
+  MapHeight: 11
+  Gap: 0
+  StartPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1072958598
 Transform:
   m_ObjectHideFlags: 0
