@@ -97,10 +97,18 @@ public class SpaceHex : MonoBehaviour {
 	/// The model's collider routes click events here to be handled appropriately.
 	/// </summary>
 	public void HandleClick() {
+		this.ShowMovementLine();
+	}
+
+	private void ShowMovementLine() {
 		GameState gameState = GameState.Instance;
 		gameState.SelectedUnit.transform.parent = this.transform;
 		GameObject fleet = this.transform.Find(gameState.SelectedUnit.name).gameObject;
-		fleet.transform.position = this.GetRandomPosition();
+		Material plannedMoveMaterial = Resources.Load<Material>("materials/PlannedMove");
+		LineRenderer lineRenderer = fleet.AddComponent<LineRenderer>();
+		lineRenderer.SetPosition(0, fleet.transform.position);
+		lineRenderer.SetPosition(1, this.GetRandomPosition());
+		lineRenderer.material = plannedMoveMaterial;
 	}
 	
 	// Update is called once per frame

@@ -351,7 +351,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426200302
 GameObject:
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 426200304}
   - component: {fileID: 426200303}
   m_Layer: 5
-  m_Name: ToolbarCanvas
+  m_Name: Toolbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,7 +440,7 @@ RectTransform:
   m_Children:
   - {fileID: 1819342955}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 1072958598}
   - component: {fileID: 1072958597}
   m_Layer: 0
-  m_Name: SpaceWorld
+  m_Name: Galaxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,7 +658,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287372001
 GameObject:
@@ -805,60 +805,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1431404328}
   m_CullTransparentMesh: 0
---- !u!1 &1537280054
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1591387445854378, guid: f8a80eae0c2297e43b872f2d91bf6aa8,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1537280056}
-  - component: {fileID: 1537280055}
-  m_Layer: 0
-  m_Name: NormalWorld
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1537280055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537280054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67b3ac7736630d142b5ac237a8a2cae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hexPrefab: {fileID: 4913838800463690, guid: 84596a5072d4a0a42a7565e88d993864, type: 2}
-  mapWidth: 100
-  mapHeight: 50
-  gap: 0
-  startPos: {x: 0, y: 0, z: 0}
-  hexMaterials:
-  - {fileID: 2100000, guid: a3d365f3c8aef99409258f0ff37648dc, type: 2}
-  - {fileID: 2100000, guid: 3c03492a8b9d3d2459181e06b0b69d61, type: 2}
-  - {fileID: 2100000, guid: 32bb7e402c61b5840bcfbc6145db8e78, type: 2}
-  - {fileID: 2100000, guid: b3bfa8a5feb698841b836a8a50889510, type: 2}
-  unitMaterials:
-  - {fileID: 2100000, guid: f25f4858d272b6d4982fb3de7bbe9e5c, type: 2}
---- !u!4 &1537280056
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4437404872929552, guid: f8a80eae0c2297e43b872f2d91bf6aa8,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537280054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1819342954
 GameObject:
   m_ObjectHideFlags: 0
