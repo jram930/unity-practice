@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Fleet : MonoBehaviour {
 
@@ -24,6 +25,7 @@ public class Fleet : MonoBehaviour {
 	/// - shows it is selected
 	/// - highlights the current hex
 	/// - highlights possible hex movements
+	/// - displays the unit name in the toolbar
 	/// </summary>
 	void OnMouseDown() {
 		this.gameState = GameState.Instance;
@@ -32,6 +34,7 @@ public class Fleet : MonoBehaviour {
 			this.ShowSelected();
 			this.HighlightCurrentHex();
 			this.ShowPossibleMoves();
+			this.ShowSelectedInToolbar();
 		}
 	}
 
@@ -46,6 +49,14 @@ public class Fleet : MonoBehaviour {
 		sphere.transform.localScale = new Vector3(10, 10, 10);
 		Material selectedUnitMaterial = Resources.Load<Material>("materials/SelectedUnit");
 		sphere.GetComponent<MeshRenderer>().material = selectedUnitMaterial;
+	}
+
+	/// <summary>
+	/// Displays the unit's information in the toolbar.
+	/// </summary>
+	private void ShowSelectedInToolbar() {
+		GameObject selectedNameText = GameObject.Find("SelectedUnitNameText");
+		selectedNameText.GetComponent<Text>().text = this.transform.gameObject.name;
 	}
 
 	/// <summary>
