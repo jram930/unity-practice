@@ -9,6 +9,8 @@ public class GameState {
 	public int MapWidth;
 	public int MapHeight;
 	public GameObject SelectedUnit;
+	public GameObject UnitDestinationHex;
+	public Vector3 UnitDestinaionPosition;
 
 	private GameState() {
 		Random.InitState((int)System.DateTime.UtcNow.Subtract(new System.DateTime(1970, 1, 1)).TotalSeconds);

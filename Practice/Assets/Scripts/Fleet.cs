@@ -8,6 +8,7 @@ public class Fleet : MonoBehaviour {
 
 	private bool selected = false;
 	private GameState gameState;
+	private GameObject selectedSphere;
 
 	// Use this for initialization
 	void Start() {
@@ -17,6 +18,13 @@ public class Fleet : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
+	}
+
+	public void DeselectUnit() {
+		this.selected = false;
+		Destroy(this.selectedSphere);
+		GameObject selectedNameText = GameObject.Find("SelectedUnitNameText");
+		selectedNameText.GetComponent<Text>().text = "No unit selected";
 	}
 
 	/// <summary>
@@ -31,7 +39,7 @@ public class Fleet : MonoBehaviour {
 		this.gameState = GameState.Instance;
 		if (!this.selected) {
 			this.gameState.SelectedUnit = this.transform.gameObject;
-			this.ShowSelected();
+			this.SelectUnit();
 			this.HighlightCurrentHex();
 			this.ShowPossibleMoves();
 			this.ShowSelectedInToolbar();
@@ -41,9 +49,10 @@ public class Fleet : MonoBehaviour {
 	/// <summary>
 	/// Adds a visual indication that this unit is currently selected (Adds a transparent sphere around it)
 	/// </summary>
-	private void ShowSelected() {
+	private void SelectUnit() {
 		this.selected = true;
 		GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		this.selectedSphere = sphere;
 		sphere.transform.parent = this.transform;
 		sphere.transform.position = new Vector3(this.transform.position.x + 0.8f, this.transform.position.y + 2f, this.transform.position.z + 0.3f);
 		sphere.transform.localScale = new Vector3(10, 10, 10);

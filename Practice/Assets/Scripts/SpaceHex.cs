@@ -98,6 +98,13 @@ public class SpaceHex : MonoBehaviour {
 	/// </summary>
 	public void HandleClick() {
 		this.ShowMovementLine();
+		this.DeselectUnit();
+		this.RemoveHexStates();
+	}
+
+	private void DeselectUnit() {
+		GameState gameState = GameState.Instance;
+		gameState.SelectedUnit.GetComponent<Fleet>().DeselectUnit();
 	}
 
 	private void ShowMovementLine() {
@@ -105,10 +112,23 @@ public class SpaceHex : MonoBehaviour {
 		gameState.SelectedUnit.transform.parent = this.transform;
 		GameObject fleet = this.transform.Find(gameState.SelectedUnit.name).gameObject;
 		Material plannedMoveMaterial = Resources.Load<Material>("materials/PlannedMove");
+		Vector3 dest = this.GetRandomPosition();
 		LineRenderer lineRenderer = fleet.AddComponent<LineRenderer>();
 		lineRenderer.SetPosition(0, fleet.transform.position);
-		lineRenderer.SetPosition(1, this.GetRandomPosition());
+		lineRenderer.SetPosition(1, dest);
 		lineRenderer.material = plannedMoveMaterial;
+		gameState.UnitDestinationHex = this.gameObject;
+		gameState.UnitDestinaionPosition = dest;
+	}
+
+	private void RemoveHexStates() {
+		Material deselectedMaterial = Resources.Load<Material>("materials/HexDeselected");
+		GameObject[] spaceHexes = GameObject.FindGameObjectsWithTag("SpaceHex");
+		foreach(GameObject spaceHex in spaceHexes) {
+			GameObject spaceHexModel = spaceHex.transform.Find("SpaceHexModel").gameObject;
+			spaceHexModel.GetComponent<MeshCollider>().enabled = false;
+			spaceHexModel.GetComponent<MeshRenderer>().material = deselectedMaterial;
+		}
 	}
 	
 	// Update is called once per frame
