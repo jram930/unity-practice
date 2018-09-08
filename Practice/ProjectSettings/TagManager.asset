@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unit
   - SpaceHex
+  - Planet
   layers:
   - Default
   - TransparentFX

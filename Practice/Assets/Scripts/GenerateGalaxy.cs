@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class GenerateSpaceWorld : MonoBehaviour {
+public class GenerateGalaxy : MonoBehaviour {
 
 	public Transform hexPrefab;
 
@@ -23,7 +23,8 @@ public class GenerateSpaceWorld : MonoBehaviour {
 			this.hexes[x] = new GameObject[this.MapHeight];
 		}
 		this.GenerateMap();
-		this.SpawnUnits();
+		this.GenerateStartingHex();
+		//this.SpawnUnits();
 	}
 
 	private void GenerateMap() {
@@ -44,10 +45,17 @@ public class GenerateSpaceWorld : MonoBehaviour {
 				hex.position = hexPos;
 				hex.parent = this.transform;
 				hex.name = "Hex_" + x + "_" + z;
-				//hex.gameObject.AddComponent<SpaceHex>();
 				hexes[x][z] = hex.gameObject;
 			}
 		}
+	}
+
+	private void GenerateStartingHex() {
+		GameState gameState = GameState.Instance;
+		// For now, just start at 0,0
+		GameObject startingHex = GameObject.Find("Hex_0_0");
+		SpaceHex hex = startingHex.GetComponent<SpaceHex>();
+		hex.MakeHomeHex();
 	}
 
 	private void SpawnUnits() {
