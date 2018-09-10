@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Fleet : MonoBehaviour {
+public class Squadron : MonoBehaviour {
 
 	private bool selected = false;
 	private GameState gameState;

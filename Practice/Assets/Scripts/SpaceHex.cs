@@ -82,21 +82,11 @@ public class SpaceHex : MonoBehaviour {
 		float yTranslate = gameState.GetRandomFloat(10f, 25f);
 		bool yPositive = gameState.GetRandomInt(0, 2) == 0;
 		float zTranslate = gameState.GetRandomFloat(10f, 25f);
-		bool zPositive = gameState.GetRandomInt(0, 2) == 0;
+		bool zPositive = gameState.GetRandomInt(0, 2) == 0;  
 		float posX = xPositive ? this.spawner.transform.position.x + xTranslate : this.spawner.transform.position.x - xTranslate;
 		float posY = yPositive ? this.spawner.transform.position.y + yTranslate : this.spawner.transform.position.y - yTranslate;
 		float posZ = zPositive ? this.spawner.transform.position.z + zTranslate : this.spawner.transform.position.z - zTranslate;
 		return new Vector3(posX, posY, posZ);
-	}
-
-	public void SpawnFleet() {
-		GameState gameState = GameState.Instance;
-		this.spawner = this.transform.Find("SpaceHexSpawner").gameObject;
-		GameObject fleetPrefab = Resources.Load("prefabs/Fleet", typeof(GameObject)) as GameObject;
-		GameObject fleet = Instantiate(fleetPrefab);
-		fleet.transform.parent = this.transform;
-		fleet.transform.position = this.GetRandomPosition();
-		fleet.gameObject.AddComponent<Fleet>();
 	}
 
 	/// <summary>
@@ -111,17 +101,17 @@ public class SpaceHex : MonoBehaviour {
 
 	private void DeselectUnit() {
 		GameState gameState = GameState.Instance;
-		gameState.SelectedUnit.GetComponent<Fleet>().DeselectUnit();
+		gameState.SelectedUnit.GetComponent<Squadron>().DeselectUnit();
 	}
 
 	private void ShowMovementLine() {
 		GameState gameState = GameState.Instance;
 		gameState.SelectedUnit.transform.parent = this.transform;
-		GameObject fleet = this.transform.Find(gameState.SelectedUnit.name).gameObject;
+		GameObject squadron = this.transform.Find(gameState.SelectedUnit.name).gameObject;
 		Material plannedMoveMaterial = Resources.Load<Material>("materials/PlannedMove");
 		Vector3 dest = this.GetRandomPosition();
-		LineRenderer lineRenderer = fleet.AddComponent<LineRenderer>();
-		lineRenderer.SetPosition(0, fleet.transform.position);
+		LineRenderer lineRenderer = squadron.AddComponent<LineRenderer>();
+		lineRenderer.SetPosition(0, squadron.transform.position);
 		lineRenderer.SetPosition(1, dest);
 		lineRenderer.material = plannedMoveMaterial;
 		gameState.UnitDestinationHex = this.gameObject;
@@ -141,6 +131,7 @@ public class SpaceHex : MonoBehaviour {
 	public void MakeHomeHex() {
 		this.SpawnHomeSunsAndPlanets();
 		this.SpawnHomeStructures();
+		this.SpawnHomeSquadrons();
 	}
 
 	private void SpawnHomeSunsAndPlanets() {
@@ -165,10 +156,57 @@ public class SpaceHex : MonoBehaviour {
 	}
 
 	private void SpawnHomeStructures() {
+		this.SpawnConstructionStation();
+		this.SpawnResearchStation();
+		this.SpawnDefenseStation();
+	}
+
+	private void SpawnConstructionStation() {
 		GameObject constructionStationPrefab = Resources.Load<GameObject>("prefabs/ConstructionStation");
 		GameObject constructionStation = Instantiate(constructionStationPrefab);
 		constructionStation.name = "ConstructionStation";
 		constructionStation.transform.parent = this.transform;
 		constructionStation.transform.position = this.GetRandomPosition();
+	}
+
+	private void SpawnResearchStation() {
+		GameObject researchStationPrefab = Resources.Load<GameObject>("prefabs/ResearchStation");
+		GameObject researchStation = Instantiate(researchStationPrefab);
+		researchStation.name = "ResearchStation";
+		researchStation.transform.parent = this.transform;
+		researchStation.transform.position = this.GetRandomPosition();
+	}
+
+	private void SpawnDefenseStation() {
+		GameObject defenseStationPrefab = Resources.Load<GameObject>("prefabs/DefenseStation");
+		GameObject defenseStation = Instantiate(defenseStationPrefab);
+		defenseStation.name = "DefenseStation";
+		defenseStation.transform.parent = this.transform;
+		defenseStation.transform.position = this.GetRandomPosition();
+	}
+
+	private void SpawnHomeSquadrons() {
+		this.SpawnExplorerSquadron();
+		this.SpawnFighterSquadron();
+	}
+
+	private void SpawnExplorerSquadron() {
+		GameState gameState = GameState.Instance;
+		this.spawner = this.transform.Find("SpaceHexSpawner").gameObject;
+		GameObject squadronPrefab = Resources.Load("prefabs/ExplorerSquadron", typeof(GameObject)) as GameObject;
+		GameObject squadron = Instantiate(squadronPrefab);
+		squadron.transform.parent = this.transform;
+		squadron.transform.position = this.GetRandomPosition();
+		squadron.name = "ExplorerSquadron";
+	}
+
+	private void SpawnFighterSquadron() {
+		GameState gameState = GameState.Instance;
+		this.spawner = this.transform.Find("SpaceHexSpawner").gameObject;
+		GameObject squadronPrefab = Resources.Load("prefabs/FighterSquadron", typeof(GameObject)) as GameObject;
+		GameObject squadron = Instantiate(squadronPrefab);
+		squadron.transform.parent = this.transform;
+		squadron.transform.position = this.GetRandomPosition();
+		squadron.name = "FighterSquadron";
 	}
 }

@@ -24,7 +24,6 @@ public class GenerateGalaxy : MonoBehaviour {
 		}
 		this.GenerateMap();
 		this.GenerateStartingHex();
-		//this.SpawnUnits();
 	}
 
 	private void GenerateMap() {
@@ -56,10 +55,5 @@ public class GenerateGalaxy : MonoBehaviour {
 		GameObject startingHex = GameObject.Find("Hex_0_0");
 		SpaceHex hex = startingHex.GetComponent<SpaceHex>();
 		hex.MakeHomeHex();
-	}
-
-	private void SpawnUnits() {
-		SpaceHex spaceHex = this.hexes[2][2].GetComponent<SpaceHex>();
-		spaceHex.SpawnFleet();
 	}
 }
