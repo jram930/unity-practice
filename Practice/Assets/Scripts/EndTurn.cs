@@ -12,9 +12,17 @@ public class EndTurn : MonoBehaviour {
 	}
 
 	private void MoveUnits() {
-		GameState gameState = GameState.Instance;
-		Destroy(gameState.SelectedUnit.GetComponent<LineRenderer>());
-		gameState.SelectedUnit.transform.parent = gameState.UnitDestinationHex.transform;
-		gameState.SelectedUnit.transform.position = gameState.UnitDestinaionPosition;
+		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+		foreach(GameObject unit in units) {
+			Squadron squadron = unit.GetComponent<Squadron>();
+			LineRenderer line = unit.GetComponent<LineRenderer>();
+			if(squadron.nextParent != null && squadron.nextPosition != null && line != null) {
+				squadron.transform.position = (Vector3) squadron.nextPosition;
+				squadron.transform.parent = squadron.nextParent.transform;
+				Destroy(line);
+				squadron.nextParent = null;
+				squadron.nextPosition = null;
+			}
+		}
 	}
 }

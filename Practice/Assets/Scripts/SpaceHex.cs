@@ -94,7 +94,7 @@ public class SpaceHex : MonoBehaviour {
 	/// The model's collider routes click events here to be handled appropriately.
 	/// </summary>
 	public void HandleClick() {
-		this.ShowMovementLine();
+		this.PlanSquadronMove();
 		this.DeselectUnit();
 		this.RemoveHexStates();
 	}
@@ -104,7 +104,7 @@ public class SpaceHex : MonoBehaviour {
 		gameState.SelectedUnit.GetComponent<Squadron>().DeselectUnit();
 	}
 
-	private void ShowMovementLine() {
+	private void PlanSquadronMove() {
 		GameState gameState = GameState.Instance;
 		gameState.SelectedUnit.transform.parent = this.transform;
 		GameObject squadron = this.transform.Find(gameState.SelectedUnit.name).gameObject;
@@ -114,8 +114,9 @@ public class SpaceHex : MonoBehaviour {
 		lineRenderer.SetPosition(0, squadron.transform.position);
 		lineRenderer.SetPosition(1, dest);
 		lineRenderer.material = plannedMoveMaterial;
-		gameState.UnitDestinationHex = this.gameObject;
-		gameState.UnitDestinaionPosition = dest;
+		Squadron squadronLogic = squadron.GetComponent<Squadron>();
+		squadronLogic.nextPosition = dest;
+		squadronLogic.nextParent = this.gameObject;
 	}
 
 	private void RemoveHexStates() {

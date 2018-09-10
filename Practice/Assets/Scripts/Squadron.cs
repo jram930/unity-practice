@@ -9,6 +9,8 @@ public class Squadron : MonoBehaviour {
 	private bool selected = false;
 	private GameState gameState;
 	private GameObject selectedSphere;
+	public Vector3? nextPosition = null;
+	public GameObject nextParent = null;
 
 	// Use this for initialization
 	void Start() {
@@ -23,8 +25,6 @@ public class Squadron : MonoBehaviour {
 	public void DeselectUnit() {
 		this.selected = false;
 		Destroy(this.selectedSphere);
-		GameObject selectedNameText = GameObject.Find("SelectedUnitNameText");
-		selectedNameText.GetComponent<Text>().text = "No unit selected";
 	}
 
 	/// <summary>
@@ -36,13 +36,12 @@ public class Squadron : MonoBehaviour {
 	/// - displays the unit name in the toolbar
 	/// </summary>
 	void OnMouseDown() {
-		this.gameState = GameState.Instance;
+		GameState gameState = GameState.Instance;
 		if (!this.selected) {
-			this.gameState.SelectedUnit = this.transform.gameObject;
+			gameState.SelectedUnit = this.transform.gameObject;
 			this.SelectUnit();
 			this.HighlightCurrentHex();
 			this.ShowPossibleMoves();
-			this.ShowSelectedInToolbar();
 		}
 	}
 
