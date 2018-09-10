@@ -110,7 +110,10 @@ public class SpaceHex : MonoBehaviour {
 		GameObject squadron = this.transform.Find(gameState.SelectedUnit.name).gameObject;
 		Material plannedMoveMaterial = Resources.Load<Material>("materials/PlannedMove");
 		Vector3 dest = this.GetRandomPosition();
-		LineRenderer lineRenderer = squadron.AddComponent<LineRenderer>();
+		LineRenderer lineRenderer = squadron.GetComponent<LineRenderer>();
+		if(lineRenderer == null) {
+			lineRenderer = squadron.AddComponent<LineRenderer>();
+		}
 		lineRenderer.SetPosition(0, squadron.transform.position);
 		lineRenderer.SetPosition(1, dest);
 		lineRenderer.material = plannedMoveMaterial;

@@ -17,14 +17,11 @@ public class Squadron : MonoBehaviour {
 		this.gameObject.GetComponent<SphereCollider>().material = null;
 	}
 
-	// Update is called once per frame
-	void Update() {
-
-	}
-
 	public void DeselectUnit() {
+		GameState gameState = GameState.Instance;
 		this.selected = false;
 		Destroy(this.selectedSphere);
+		gameState.SelectedUnit = null;
 	}
 
 	/// <summary>
@@ -38,6 +35,9 @@ public class Squadron : MonoBehaviour {
 	void OnMouseDown() {
 		GameState gameState = GameState.Instance;
 		if (!this.selected) {
+			if(gameState.SelectedUnit != null) {
+				gameState.SelectedUnit.GetComponent<Squadron>().DeselectUnit();
+			}
 			gameState.SelectedUnit = this.transform.gameObject;
 			this.SelectUnit();
 			this.HighlightCurrentHex();
