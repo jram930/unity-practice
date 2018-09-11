@@ -17,13 +17,16 @@ public class GenerateGalaxy : MonoBehaviour {
 	private GameObject[][] hexes;
 	private GameState gameState;
 
-	void Start() {
+	void Awake() {
 		this.hexes = new GameObject[MapWidth][];
-		for(int x=0; x<this.MapWidth; x++) {
+		for (int x = 0; x < this.MapWidth; x++) {
 			this.hexes[x] = new GameObject[this.MapHeight];
 		}
 		this.GenerateMap();
 		this.GenerateStartingHex();
+	}
+
+	void Start() {
 		this.InitializeCamera();
 	}
 
@@ -60,9 +63,9 @@ public class GenerateGalaxy : MonoBehaviour {
 
 	private void InitializeCamera() {
 		GameObject startingHex = GameObject.Find("Hex_0_0");
-		GameObject startingSun = startingHex.transform.Find("Sun").gameObject;
 		GameObject cameraFocusPoint = GameObject.Find("CameraFocusPoint");
 		GameState gameState = GameState.Instance;
+		GameObject startingSun = startingHex.transform.Find("Sun").gameObject;
 		cameraFocusPoint.transform.parent = startingSun.transform;
 		cameraFocusPoint.transform.position = startingSun.transform.position;
 		gameState.CameraFocusPoint = cameraFocusPoint;

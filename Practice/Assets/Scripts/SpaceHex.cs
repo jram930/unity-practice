@@ -11,7 +11,7 @@ public class SpaceHex : MonoBehaviour {
 	private GameState gameState;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		GameState gameState = GameState.Instance;
 		this.spawner = this.transform.Find("SpaceHexSpawner").gameObject;
 		this.SpawnSun();
