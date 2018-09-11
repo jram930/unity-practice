@@ -24,6 +24,7 @@ public class GenerateGalaxy : MonoBehaviour {
 		}
 		this.GenerateMap();
 		this.GenerateStartingHex();
+		this.InitializeCamera();
 	}
 
 	private void GenerateMap() {
@@ -55,5 +56,15 @@ public class GenerateGalaxy : MonoBehaviour {
 		GameObject startingHex = GameObject.Find("Hex_0_0");
 		SpaceHex hex = startingHex.GetComponent<SpaceHex>();
 		hex.MakeHomeHex();
+	}
+
+	private void InitializeCamera() {
+		GameObject startingHex = GameObject.Find("Hex_0_0");
+		GameObject startingSun = startingHex.transform.Find("Sun").gameObject;
+		GameObject cameraFocusPoint = GameObject.Find("CameraFocusPoint");
+		GameState gameState = GameState.Instance;
+		cameraFocusPoint.transform.parent = startingSun.transform;
+		cameraFocusPoint.transform.position = startingSun.transform.position;
+		gameState.CameraFocusPoint = cameraFocusPoint;
 	}
 }
