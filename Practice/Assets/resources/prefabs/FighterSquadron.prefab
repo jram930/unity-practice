@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4741371264656102}
   - component: {fileID: 135406170385313944}
-  - component: {fileID: 114782040146971556}
+  - component: {fileID: 114918230600972994}
   m_Layer: 0
   m_Name: FighterSquadron
   m_TagString: Unit
@@ -411,7 +411,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929058539341836}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114782040146971556
+--- !u!114 &114918230600972994
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,9 +419,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1148385005761246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f63381512dec5994cafa82831ac94844, type: 3}
+  m_Script: {fileID: 11500000, guid: 2aaaf3a5bf7665d4cac86ace1578882a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextParent: {fileID: 0}
 --- !u!135 &135406170385313944
 SphereCollider:
   m_ObjectHideFlags: 1

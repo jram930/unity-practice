@@ -17,11 +17,8 @@ public class EndTurn : MonoBehaviour {
 			Squadron squadron = unit.GetComponent<Squadron>();
 			LineRenderer line = unit.GetComponent<LineRenderer>();
 			if(squadron.nextParent != null && squadron.nextPosition != null && line != null) {
-				squadron.transform.position = (Vector3) squadron.nextPosition;
-				squadron.transform.parent = squadron.nextParent.transform;
 				Destroy(line);
-				squadron.nextParent = null;
-				squadron.nextPosition = null;
+				squadron.MoveToNextPosition();
 			}
 		}
 	}

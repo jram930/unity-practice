@@ -4,17 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Squadron : MonoBehaviour {
+public abstract class Squadron : MonoBehaviour {
 
 	private bool selected = false;
 	private GameState gameState;
 	private GameObject selectedSphere;
 	public Vector3? nextPosition = null;
 	public GameObject nextParent = null;
+	private Boolean moving = false;
+
+	protected abstract int GetMovementSpeed();
 
 	// Use this for initialization
 	void Start() {
 		this.gameObject.GetComponent<SphereCollider>().material = null;
+	}
+
+	void Update() {
+		if(this.moving && this.transform.position != nextPosition) {
+			float speed = 100f * Time.deltaTime;
+			this.transform.position = Vector3.MoveTowards(this.transform.position, (Vector3) this.nextPosition, speed);
+		} else if(this.moving){
+			this.moving = false;
+			this.transform.parent = this.nextParent.transform;
+			this.nextPosition = null;
+			this.nextParent = null;
+		}
 	}
 
 	public void DeselectUnit() {
@@ -22,6 +37,10 @@ public class Squadron : MonoBehaviour {
 		this.selected = false;
 		Destroy(this.selectedSphere);
 		gameState.SelectedUnit = null;
+	}
+
+	public void MoveToNextPosition() {
+		this.moving = true;
 	}
 
 	/// <summary>

@@ -106,8 +106,7 @@ public class SpaceHex : MonoBehaviour {
 
 	private void PlanSquadronMove() {
 		GameState gameState = GameState.Instance;
-		gameState.SelectedUnit.transform.parent = this.transform;
-		GameObject squadron = this.transform.Find(gameState.SelectedUnit.name).gameObject;
+		GameObject squadron = gameState.SelectedUnit;
 		Material plannedMoveMaterial = Resources.Load<Material>("materials/PlannedMove");
 		Vector3 dest = this.GetRandomPosition();
 		LineRenderer lineRenderer = squadron.GetComponent<LineRenderer>();
