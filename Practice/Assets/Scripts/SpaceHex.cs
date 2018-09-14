@@ -194,7 +194,7 @@ public class SpaceHex : MonoBehaviour {
 		this.SpawnFighterSquadron();
 	}
 
-	private void SpawnExplorerSquadron() {
+	public void SpawnExplorerSquadron() {
 		GameState gameState = GameState.Instance;
 		this.spawner = this.transform.Find("SpaceHexSpawner").gameObject;
 		GameObject squadronPrefab = Resources.Load("prefabs/ExplorerSquadron", typeof(GameObject)) as GameObject;
@@ -204,7 +204,7 @@ public class SpaceHex : MonoBehaviour {
 		squadron.name = "ExplorerSquadron";
 	}
 
-	private void SpawnFighterSquadron() {
+	public void SpawnFighterSquadron() {
 		GameState gameState = GameState.Instance;
 		this.spawner = this.transform.Find("SpaceHexSpawner").gameObject;
 		GameObject squadronPrefab = Resources.Load("prefabs/FighterSquadron", typeof(GameObject)) as GameObject;

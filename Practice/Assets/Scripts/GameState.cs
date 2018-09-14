@@ -10,6 +10,7 @@ public class GameState {
 	public int MapHeight;
 	public GameObject SelectedUnit;
 	public GameObject CameraFocusPoint;
+	public GameObject SelectedConstructionStation;
 
 	private GameState() {
 		Random.InitState((int)System.DateTime.UtcNow.Subtract(new System.DateTime(1970, 1, 1)).TotalSeconds);
