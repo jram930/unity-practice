@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Planet : MonoBehaviour {
 
 	public GameObject PlanetPanel;
+	private string planetName;
 
 	void Awake() {
 		this.PlanetPanel = GameObject.Find("PlanetPanel");
@@ -13,6 +14,7 @@ public abstract class Planet : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.PlanetPanel.SetActive(false);
+		this.planetName = PlanetNameGenerator.Instance.GetRandomPlanetName();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +29,7 @@ public abstract class Planet : MonoBehaviour {
 	}
 
 	public string GetPlanetName() {
-		return "Todo";
+		return this.planetName;
 	}
 
 	public abstract string GetPlanetType();

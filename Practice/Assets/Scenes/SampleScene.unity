@@ -145,8 +145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 59, y: -19}
-  m_SizeDelta: {x: 100, y: 20}
+  m_AnchoredPosition: {x: 158, y: -18.7}
+  m_SizeDelta: {x: 300, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64386901
 MonoBehaviour:
@@ -1945,6 +1945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 1757107120}
+  PlanetName: {fileID: 64386901}
+  PlanetType: {fileID: 1931247642}
 --- !u!114 &1757107123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2284,8 +2286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 59, y: -39}
-  m_SizeDelta: {x: 100, y: 20}
+  m_AnchoredPosition: {x: 158, y: -43.699997}
+  m_SizeDelta: {x: 300, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1931247642
 MonoBehaviour:

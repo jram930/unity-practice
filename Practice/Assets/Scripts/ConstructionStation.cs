@@ -6,9 +6,12 @@ public class ConstructionStation : MonoBehaviour {
 
 	GameObject constructionPanel;
 
+	void Awake() {
+		this.constructionPanel = GameObject.Find("ConstructionPanel");
+	}
+
 	// Use this for initialization
 	void Start () {
-		this.constructionPanel = GameObject.Find("ConstructionPanel");
 		this.constructionPanel.SetActive(false);
 	}
 	

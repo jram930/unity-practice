@@ -18,6 +18,9 @@ public class GenerateGalaxy : MonoBehaviour {
 	private GameState gameState;
 
 	void Awake() {
+		GameState gameState = GameState.Instance;
+		PlayerState playerState = PlayerState.Instance;
+		PlanetNameGenerator planetNameGen = PlanetNameGenerator.Instance;
 		this.hexes = new GameObject[MapWidth][];
 		for (int x = 0; x < this.MapWidth; x++) {
 			this.hexes[x] = new GameObject[this.MapHeight];
