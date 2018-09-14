@@ -11,6 +11,7 @@ public class GameState {
 	public GameObject SelectedUnit;
 	public GameObject CameraFocusPoint;
 	public GameObject SelectedConstructionStation;
+	public GameObject SelectedPlanet;
 
 	private GameState() {
 		Random.InitState((int)System.DateTime.UtcNow.Subtract(new System.DateTime(1970, 1, 1)).TotalSeconds);

@@ -37,11 +37,34 @@ public class SpaceHex : MonoBehaviour {
 	}
 
 	private void SpawnNumberOfPlanets(int n) {
+		GameState gameState = GameState.Instance;
 		this.planets = new GameObject[n];
 		for (int i = 0; i < n; i++) {
-			GameObject planetPrefab = Resources.Load("prefabs/Planet", typeof(GameObject)) as GameObject;
+			int planetTypeNum = gameState.GetRandomInt(0,6);
+			string planetType = "NotSet";
+			switch(planetTypeNum) {
+				case 0:
+					planetType = "DesertPlanet";
+					break;
+				case 1:
+					planetType = "ContinentalPlanet";
+					break;
+				case 2:
+					planetType = "IcePlanet";
+					break;
+				case 3:
+					planetType = "GasPlanet";
+					break;
+				case 4:
+					planetType = "LavaPlanet";
+					break;
+				case 5:
+					planetType = "OceanPlanet";
+					break;
+			}
+			GameObject planetPrefab = Resources.Load("prefabs/" + planetType, typeof(GameObject)) as GameObject;
 			GameObject planet = Instantiate(planetPrefab);
-			planet.name = "Planet";
+			planet.name = planetType;
 			this.planets[i] = planet;
 			planet.transform.parent = this.transform;
 			planet.transform.position = this.GetRandomPosition();
