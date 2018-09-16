@@ -22,14 +22,14 @@ public class InfoPanel : MonoBehaviour {
 	}
 
 	private void SetCreditsText(int credits) {
-		GameObject.Find("InfoCreditsText").GetComponent<Text>().text = "Credits: " + credits;
+		GameObject.Find("InfoCreditsText").GetComponent<Text>().text = "Credits: " + string.Format("{0:n0}", credits);
 	}
 
 	private void SetMaterialsText(int materials) {
-		GameObject.Find("InfoMaterialsText").GetComponent<Text>().text = "Materials: " + materials;
+		GameObject.Find("InfoMaterialsText").GetComponent<Text>().text = "Materials: " + string.Format("{0:n0}", materials);
 	}
 
 	private void SetResearchText(int research) {
-		GameObject.Find("InfoResearchText").GetComponent<Text>().text = "Research: " + research;
+		GameObject.Find("InfoResearchText").GetComponent<Text>().text = "Research: " + string.Format("{0:n0}", research);
 	}
 }

@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OceanPlanet : Planet {
-	public override string GetPlanetType() {
-		return "Ocean Planet";
+
+	protected override void initPlanetTraits() {
+		GameState gameState = GameState.Instance;
+		this.planetType = "Ocean Planet";
+		this.planetCapacity = gameState.GetRandomInt(2, 5);
 	}
+
 }

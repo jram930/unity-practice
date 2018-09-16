@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LavaPlanet : Planet {
-	public override string GetPlanetType() {
-		return "Lava Planet";
+
+	protected override void initPlanetTraits() {
+		GameState gameState = GameState.Instance;
+		this.planetType = "Lava Planet";
+		this.planetCapacity = gameState.GetRandomInt(2, 5);
 	}
+
 }

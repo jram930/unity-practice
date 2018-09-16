@@ -31,7 +31,7 @@ public class SpaceHex : MonoBehaviour {
 			GameObject sunPrefab = Resources.Load("prefabs/Sun", typeof(GameObject)) as GameObject;
 			GameObject sun = Instantiate(sunPrefab);
 			sun.name = "Sun";
-			sun.transform.position = this.spawner.transform.position;
+			sun.transform.position = this.GetRandomPosition(0f, 8f);
 			sun.transform.parent = this.transform;
 		}
 	}
@@ -97,14 +97,14 @@ public class SpaceHex : MonoBehaviour {
 		this.SpawnNumberOfPlanets(this.numPlanets);
 	}
 
-	private Vector3 GetRandomPosition() {
+	private Vector3 GetRandomPosition(float min = 10f, float max = 25f) {
 		GameState gameState = GameState.Instance;
 		this.spawner = this.transform.Find("SpaceHexSpawner").gameObject;
-		float xTranslate = gameState.GetRandomFloat(10f, 25f);
+		float xTranslate = gameState.GetRandomFloat(min, max);
 		bool xPositive = gameState.GetRandomInt(0, 2) == 0;
-		float yTranslate = gameState.GetRandomFloat(10f, 25f);
+		float yTranslate = gameState.GetRandomFloat(min, max);
 		bool yPositive = gameState.GetRandomInt(0, 2) == 0;
-		float zTranslate = gameState.GetRandomFloat(10f, 25f);
+		float zTranslate = gameState.GetRandomFloat(min, max);
 		bool zPositive = gameState.GetRandomInt(0, 2) == 0;  
 		float posX = xPositive ? this.spawner.transform.position.x + xTranslate : this.spawner.transform.position.x - xTranslate;
 		float posY = yPositive ? this.spawner.transform.position.y + yTranslate : this.spawner.transform.position.y - yTranslate;
@@ -164,6 +164,7 @@ public class SpaceHex : MonoBehaviour {
 		GameState gameState = GameState.Instance;
 		Transform sunFind = this.transform.Find("Sun");
 		if (sunFind == null) {
+			print("No sun, spawning sun");
 			this.SpawnSun();
 		}
 		this.numPlanets = gameState.GetRandomInt(2, 5);
@@ -184,7 +185,7 @@ public class SpaceHex : MonoBehaviour {
 	private void SpawnHomeStructures() {
 		this.SpawnConstructionStation();
 		this.SpawnResearchStation();
-		this.SpawnDefenseStation();
+		//this.SpawnDefenseStation();
 	}
 
 	private void SpawnConstructionStation() {

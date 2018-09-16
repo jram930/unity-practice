@@ -68,7 +68,7 @@ public class GenerateGalaxy : MonoBehaviour {
 		GameObject startingHex = GameObject.Find("Hex_0_0");
 		GameObject cameraFocusPoint = GameObject.Find("CameraFocusPoint");
 		GameState gameState = GameState.Instance;
-		GameObject startingSun = startingHex.transform.Find("Sun").gameObject;
+		GameObject startingSun = startingHex.transform.Find("SpaceHexSpawner").gameObject;
 		cameraFocusPoint.transform.parent = startingSun.transform;
 		cameraFocusPoint.transform.position = startingSun.transform.position;
 		gameState.CameraFocusPoint = cameraFocusPoint;

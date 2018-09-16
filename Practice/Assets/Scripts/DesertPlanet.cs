@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DesertPlanet : Planet {
-	public override string GetPlanetType() {
-		return "Desert Planet";
+
+	protected override void initPlanetTraits() {
+		GameState gameState = GameState.Instance;
+		this.planetType = "Desert Planet";
+		this.planetCapacity = gameState.GetRandomInt(2, 5);
 	}
+
 }

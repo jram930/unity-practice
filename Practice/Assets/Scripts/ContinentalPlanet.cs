@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ContinentalPlanet : Planet {
 
-	public override string GetPlanetType() {
-		return "Continental Planet";
+	protected override void initPlanetTraits() {
+		GameState gameState = GameState.Instance;
+		this.planetType = "Continental Planet";
+		this.planetCapacity = gameState.GetRandomInt(4, 9);
 	}
 
 }

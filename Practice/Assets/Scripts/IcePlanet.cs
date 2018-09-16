@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IcePlanet : Planet {
-	public override string GetPlanetType() {
-		return "Ice Planet";
+
+	protected override void initPlanetTraits() {
+		GameState gameState = GameState.Instance;
+		this.planetType = "Ice Planet";
+		this.planetCapacity = gameState.GetRandomInt(2, 5);
 	}
+
 }
